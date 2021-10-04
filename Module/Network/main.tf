@@ -1,4 +1,3 @@
-
 resource "google_compute_network" "valohai_vpc" {
   project                 = var.project
   name                    = "valohai-vpc"

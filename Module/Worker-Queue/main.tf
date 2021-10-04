@@ -1,4 +1,3 @@
-
 resource "google_secret_manager_secret" "redis_password" {
   secret_id = "valohai_redis_password"
   replication {
