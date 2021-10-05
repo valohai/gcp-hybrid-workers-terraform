@@ -17,6 +17,9 @@ module "iam" {
 
   project       = var.project_id
   valohai_email = var.valohai_email
+  bucket        = module.bucket.bucket
+
+  depends_on    = [module.bucket]
 }
 
 module "worker_queue" {

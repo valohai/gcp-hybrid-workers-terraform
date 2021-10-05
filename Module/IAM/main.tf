@@ -62,7 +62,7 @@ data "google_iam_policy" "valohai_bucket_admin" {
 }
 
 resource "google_storage_bucket_iam_policy" "policy" {
-  bucket = "valohai-data"
+  bucket = "valohai-data-${project.number}"
   policy_data = data.google_iam_policy.valohai_bucket_admin.policy_data
 }
 
