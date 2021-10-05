@@ -42,6 +42,7 @@ resource "google_project_iam_member" "valohai_sa_master_binding" {
   }
 }
 
+
 resource "google_project_iam_member" "valohai_secret_binding" {
   project = var.project
   role    = "roles/secretmanager.secretAccessor"
@@ -51,6 +52,18 @@ resource "google_project_iam_member" "valohai_secret_binding" {
     description = "Access to Valohai redis password and the SA key"
     expression  = "resource.name.startsWith('projects/${data.google_project.project.number}/secrets/valohai_redis_password') || resource.name.startsWith('projects/${data.google_project.project.number}/secrets/valohai_master_sa')"
   }
+}
+
+data "google_iam_policy" "valohai_bucket_admin" {
+  binding {
+    role = "roles/storage.admin"
+    members = ["serviceAccount:${google_service_account.valohai_sa_master.email}"]
+  }
+}
+
+resource "google_storage_bucket_iam_policy" "policy" {
+  bucket = "valohai-data"
+  policy_data = data.google_iam_policy.valohai_bucket_admin.policy_data
 }
 
 resource "google_project_iam_member" "valohai_compute_viewer" {

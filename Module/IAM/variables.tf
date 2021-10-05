@@ -5,3 +5,7 @@ variable "project" {
 variable "valohai_email" {
     type = string
 }
+
+variable "bucket" {
+    type = string
+}

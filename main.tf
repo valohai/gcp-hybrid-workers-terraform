@@ -31,3 +31,9 @@ module "worker_queue" {
 
   depends_on = [module.network]
 }
+
+module "bucket" {
+  source        = "./Module/Bucket"
+
+  region        = var.region
+}
