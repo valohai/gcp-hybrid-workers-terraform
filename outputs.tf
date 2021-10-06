@@ -6,3 +6,8 @@ output "project" {
 output "external-ip" {
     value = "${module.worker_queue.external-ip}"
 }
+
+output "valohai_master_sa" {
+    value = "${module.iam.valohai_master_sa}"
+}
+
