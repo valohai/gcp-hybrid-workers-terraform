@@ -54,16 +54,10 @@ resource "google_project_iam_member" "valohai_secret_binding" {
   }
 }
 
-data "google_iam_policy" "valohai_bucket_admin" {
-  binding {
-    role = "roles/storage.admin"
-    members = ["serviceAccount:${google_service_account.valohai_sa_master.email}"]
-  }
-}
-
-resource "google_storage_bucket_iam_policy" "policy" {
+resource "google_storage_bucket_iam_member" "valohai_data" {
   bucket = "valohai-data-${data.google_project.project.number}"
-  policy_data = data.google_iam_policy.valohai_bucket_admin.policy_data
+  role = "roles/storage.admin"
+  member = "serviceAccount:${google_service_account.valohai_sa_master.email}"
 }
 
 resource "google_project_iam_member" "valohai_compute_viewer" {
