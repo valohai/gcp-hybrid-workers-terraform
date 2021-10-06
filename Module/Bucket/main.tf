@@ -1,7 +1,7 @@
 data "google_project" "project" {}
 
-resource "google_storage_bucket" "static-site" {
-  name          = "valohai-data-${project.number}"
+resource "google_storage_bucket" "valohai-data" {
+  name          = "valohai-data-${data.google_project.project.number}"
   location      = var.region
   storage_class = "STANDARD"
 
