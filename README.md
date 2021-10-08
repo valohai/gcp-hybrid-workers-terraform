@@ -8,6 +8,10 @@ This repository contains a Terraform script to deploy the resources required by 
 * [Install gcloud](https://cloud.google.com/sdk/docs/install)
 * Initialize gcloud with `gcloud init`
 
+Make sure you've activated the following APIs in your GCP Project:
+* [Compute Engine API](https://console.cloud.google.com/marketplace/product/google/compute.googleapis.com)
+* [Secret Manager API](https://console.cloud.google.com/marketplace/product/google/secretmanager.googleapis.com)
+
 ## Running the Terraform template
 
 Before running the template you'll need the following information from Valohai:
@@ -25,3 +29,7 @@ Review the `variables.tfvars` file and add your project and region details.
 3. Finally execute `terraform apply "valohai-init"` to configure the resources needed for a Valohai Hybrid GCP Installation.
 
 After you've created all the resources, you'll need to share the outputs with Valohai (`external-ip` and `project`)
+
+## Removing Valohai resources
+
+To remove all of the created Valohai resources empty your `valohai-data` Google Cloud Storage bucket and run `terraform destroy -var-file=variables.tfvars`.

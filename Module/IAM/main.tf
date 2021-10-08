@@ -90,6 +90,6 @@ resource "google_service_account_iam_binding" "valohai-imperssonate-master" {
   role               = "roles/iam.serviceAccountTokenCreator"
 
   members = [
-    "user:${var.valohai_email}"
+    "serviceAccount:${var.valohai_email}"
   ]
 }
