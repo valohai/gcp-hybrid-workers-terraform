@@ -30,18 +30,6 @@ resource "google_compute_firewall" "valohai_fr_queue_http" {
     protocol  = "tcp"
     ports     = ["80"]
   }
-  target_tags = ["valohai-queue"]
-}
-
-resource "google_compute_firewall" "valohai_fr_queue_ssh" {
-  project     = var.project
-  name        = "valohai-fr-queue-ssh"
-  network     = google_compute_network.valohai_vpc.name
-  description = "Allows Valohai engineers to connect over SSH for maintenance purposes"
-
-  allow {
-    protocol  = "tcp"
-    ports     = ["22"]
-  }
+  source_ranges = ["0.0.0.0/0"]
   target_tags = ["valohai-queue"]
 }
