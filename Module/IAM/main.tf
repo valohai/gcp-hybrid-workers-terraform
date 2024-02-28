@@ -75,7 +75,7 @@ resource "google_project_iam_member" "valohai_sa_user" {
 resource "google_secret_manager_secret" "valohai_master_sa" {
   secret_id = "valohai_master_sa"
   replication {
-    automatic = true
+    auto {}
   }
 }
 
